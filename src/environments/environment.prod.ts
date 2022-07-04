@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  Path: $ENV.Path,
+  TEMP:$ENV.TEMP,
+  TMP:$ENV.TMP
 };
