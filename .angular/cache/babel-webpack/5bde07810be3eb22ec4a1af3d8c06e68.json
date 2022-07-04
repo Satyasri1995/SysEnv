@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: true,\n  Path: $ENV.Path,\n  TEMP: $ENV.TEMP,\n  TMP: $ENV.TMP\n};","map":null,"metadata":{},"sourceType":"module"}
