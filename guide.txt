@@ -1,0 +1,50 @@
+npm install -D @angular-builders/custom-webpack@version
+npm install -D  @angular-devkit/build-angular@version
+--------------------------------------------------------
+"build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+							"customWebpackConfig": {
+							  "path": "custom-webpack.config.js"
+							},
+					}
+		}
+-------------------------------------------------------------
+
+custom-webpack.config.js		
+const webpack = require('webpack');
+
+module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      $ENV: {
+        Path: JSON.stringify(process.env.Path),
+        TEMP: JSON.stringify(process.env.TEMP),
+        TMP: JSON.stringify(process.env.TMP)
+      }
+    })
+  ]
+};
+-----------------------------------------------
+typing.d.ts
+declare var $ENV: Env;
+
+interface Env {
+  Path: string;
+  TEMP: string;
+  TMP: string;
+}
+
+-----------------------------------------------
+environment.ts
+export const environment = {
+  production: false,
+  Path: $ENV.Path,
+  TEMP:$ENV.TEMP,
+  TMP:$ENV.TMP
+};
+
+------------------------------------------------
+.browserslistrc
+not ios_saf 15.2-15.3
+not safari 15.2-15.3
